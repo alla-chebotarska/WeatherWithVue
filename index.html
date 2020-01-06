@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Weather with Vue.js</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body>
+    <div class="container" id="weatherContainer" v-cloak>
+        <h1 class="header" id="pageTitle">Weater in the City</h1>
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="input-group mb-3">
+                    <input class="form-control" v-model="city" v-on:focus="onInputFocus" name="city"
+                        aria-describedby="Forecast city" placeholder="Enter city name">
+                    <div class="input-group-append">
+                        <button id="findCityBtn" v-on:click="loadWeather" class="btn btn-secondary"
+                            type="button">Search</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card" id="weather" v-if="weather && Object.keys(weather).length !== 0">
+            <section class="header">
+                <div class="container card-header d-inline-block">
+                    <span id="location">{{city}}</span>
+                    <span id="description" class="text-muted pl-2">{{currentWeather.description}}</span>
+                </div>
+            </section>
+            <section class="container">
+                <div class="row h-100">
+                    <div class="offset-md-1 offset-lg-1 col-sm-3 align-vertical-center">
+                        <img id="weatherImage" v-bind:src="currentWeather.icon" class="img-fluid " style="width:150px">
+                    </div>
+                    <div class="mx-auto col-sm-3 align-vertical-center">
+                        <h2 id="temp">{{currentWeather.temp}} &deg;C</h2>
+                    </div>
+                    <div class="col-sm-4 text-center text-sm-left align-vertical-center" id="weatherDetails">
+                        <p id="humidity"><b>Humidity:</b> {{currentWeather.humidity}} %</p>
+                        <p id="windSpeed"><b>Wind speed: </b>{{currentWeather.windSpeed}} m/s</p>
+                    </div>
+                </div>
+            </section>
+            <br>
+            <section class="weather-forecast">
+                <div class="container">
+                    <div class="row">
+                        <div v-for="(value, index) in weekForecast" class="col-sm-2"
+                            :class="{ 'offset-md-1 offset-sm-1': index === 0 }">
+                            <h6 class="card-title"><b>{{value.day}}</b></h6>
+                            <div><img class="card-img weatherForecastImg" style="max-width: 100px"
+                                    v-bind:src="value.icon"></div>
+                            <div class="d-inline-flex">
+                                <div class="p-2 card-text">{{value.maxTemp}}</div>
+                                <div class="p-2 text-secondary card-text">{{value.minTemp}}</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="alert alert-danger" v-if="!weather" role="alert" id="errorAlert">
+            Failed to load weather for <b>{{city}}</b> city!
+        </div>
+    </div>
+    <script src="script/weekForecast.js"></script>
+    <script src="script/currentWeather.js"></script>
+    <script src="script/weatherClient.js"></script>
+    <script src="script/main.js"></script>
+</body>
+
+</html>

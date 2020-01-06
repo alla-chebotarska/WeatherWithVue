@@ -1,0 +1,76 @@
+html {
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+body {
+   background-color: #DEE9FC;
+   color: #091834;
+   text-align: center;
+}
+
+#weather, #errorAlert{
+    margin-top: 15px;
+}
+
+#weatherImage{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 20px;
+}
+.hidden{
+    display: none;
+}
+
+ .h3,
+ h3 {
+     font-size: 1.56rem
+ }
+
+ * {
+     font-family: "Poppins", sans-serif;
+     font-weight: 500
+ }
+
+.card-header{
+    text-align: left;
+    color: #091834;
+}
+
+#description{
+    padding-bottom: 0px;
+}
+
+#weatherDetails{
+    text-align: left;
+     padding-top: 50px;
+}
+
+p{
+    margin: 0px;
+}
+
+.max{
+    text-align: right;
+}
+
+.min{
+    text-align: left;
+}
+
+#location {
+    font-size: 1.56rem;
+}
+#temp{
+    padding-top: 50px;
+}
+
+[v-cloak] {display: none}
+
+
+
+
+
